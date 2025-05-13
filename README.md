@@ -2,7 +2,7 @@
 
 This is an extension of [current standard practice for primary care codelist creation](http://dx.doi.org/10.1136/bmjopen-2017-019637) which adds additional steps to take advantage of automated searches and advanced features of the SNOMED CT medical terminology to create more comprehensive codelists.
 
-Creating SNOMED CT codelists can be broken down in to 9 steps:
+Creating a SNOMED CT codelist can be broken down in to 7 steps:
 ```mermaid
  flowchart TD
  A[1: Identify search terms] --> B[2: Search the medical dictionary]
