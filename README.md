@@ -6,23 +6,17 @@ Creating SNOMED CT codelists can be broken down in to 9 steps:
 ```mermaid
  flowchart TD
  A[1: Identify search terms] --> B[2: Search the medical dictionary]
-    B -. optional .-> C([3: Exclude broad undesired terms])
+    B -. optional .-> C([3: Exclusion search for broad undesired terms])
     B --> D[4: Manually screen codelist]
     C -.-> D
     D --> E[5: Use SNOMED CT Concept ID <br> to identify synonymous terms]
-    E -. optional .-> F(["6: Compare with pre-existing <br>codelists (if available)"])
-    E -. optional .-> G(["7: Automate code categorisation"])
-    E --> H[8: Export code list for clinical review]
-    F --> G
-    G --> H
-    H --> I[9: Restrict code list to approved codes]
+    E --> H[6: Export code list for clinical review]
+    H --> I[7: Restrict code list to approved codes]
     A:::step
     B:::step
     C:::optional
     D:::step
     E:::step
-    F:::optional
-    G:::optional
     H:::step
     I:::final
     classDef step color:black, fill:#aec6cf, stroke:#779ecb
@@ -54,14 +48,6 @@ Creating SNOMED CT codelists can be broken down in to 9 steps:
         - For example, the medical concept of "myocardial infarction" has the synonyms "heart attack" and "infarction of heart". While these all have different Description IDs, they all have the same Concept ID.
     - Therefore we can use the Concept IDs of our current codelist to find further synonyms to add.
     - After adding the additional terms, check that they are appropriate. If they are not, consider whether the other terms associated with that concept are also appropriate. If the original terms are appropriate but the new terms are not, discard the newly found terms.
-  
-1. **(OPTIONAL) Compare with pre-existing codelists**
-    - Where there are pre-existing codelists, these should be merged with the new codelist to add any additional codes and also add any classification of codes that may be useful.
-
-1. **(OPTIONAL) Use another search to automate the categorisation of codes.**
-    - It is possible that you may want to categorise the codes you are searching for.
-        - For example, if you are searching for smoking status codes, you may want to further classify the codes to identify current smoking, ex smoking, or never smoking.
-    - If you repeat further searches for each of your desired categories (e.g., one for current smoking, one for ex smoking, and one for never smoking), you can further automate the production of your codelist.
 
 1. **Export codelist for review by a primary care clinician.**
     - Export your codelist as an Excel spreadsheet (making sure SNOMED CT codes are stored as text rather than numbers).
@@ -644,9 +630,3 @@ use "`filename'", clear  //So that you can see results of search after do file r
 
 log close
 ```
-
-## Example *R* code
-An example smoking status R script can be found [here](scripts/R/smoking_status.R).
-
-## Example *python* code
-An example smoking status python script can be found [here](scripts/python/smoking_status.py) (work in progress).
